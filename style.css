@@ -293,7 +293,9 @@ header .master-play .icon .bi {
   align-items: center;
 } */
 
-header .master-play .icon #download {
+header .master-play .icon a#download_music {
+  text-decoration: none;
+  color: #fff;
   font-size: 20px;
   margin-left: 10px;
 }
