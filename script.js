@@ -118,7 +118,7 @@ const songs = [
   },
   {
     id: "20",
-    songName: ` Vande mantram<br>
+    songName: `Vande mantram<br>
       <div class="subtitle">Alan Walker</div>`,
     poster: "img/20.jpg",
   },
@@ -135,13 +135,13 @@ let wave = document.getElementsByClassName("wave")[0];
 masterPlay.addEventListener("click", () => {
   if (music.paused || music.currentTime <= 0) {
     music.play();
-    masterPlay.classList.remove("bi-play-circle-fill");
-    masterPlay.classList.add("bi-pause-circle-fill");
+    masterPlay.classList.remove("bi-play-fill");
+    masterPlay.classList.add("bi-pause-fill");
     wave.classList.add("active2");
   } else {
     music.pause();
-    masterPlay.classList.add("bi-play-circle-fill");
-    masterPlay.classList.remove("bi-pause-circle-fill");
+    masterPlay.classList.add("bi-play-fill");
+    masterPlay.classList.remove("bi-pause-fill");
     wave.classList.remove("active2");
   }
 });
@@ -149,8 +149,8 @@ masterPlay.addEventListener("click", () => {
 const makeAllplays = () => {
   Array.from(document.getElementsByClassName("playListPlay")).forEach(
     (element) => {
-      element.classList.add("bi-play-circle-fill");
-      element.classList.remove("bi-pause-circle-fill");
+      element.classList.add("bi-play-fill");
+      element.classList.remove("bi-pause-fill");
     }
   );
 };
@@ -170,8 +170,8 @@ Array.from(document.getElementsByClassName("playListPlay")).forEach(
     element.addEventListener("click", (e) => {
       index = e.target.id;
       makeAllplays();
-      e.target.classList.remove("bi-play-circle-fill");
-      e.target.classList.add("bi-pause-circle-fill");
+      e.target.classList.remove("bi-play-fill");
+      e.target.classList.add("bi-pause-fill");
       // console.log(index);
       music.src = `audio/${index}.mp3`;
       poster_master_play.src = `img/${index}.jpg`;
@@ -186,12 +186,13 @@ Array.from(document.getElementsByClassName("playListPlay")).forEach(
         title.innerHTML = songName;
       });
 
-      masterPlay.classList.remove("bi-play-circle-fill");
-      masterPlay.classList.add("bi-pause-circle-fill");
+      masterPlay.classList.remove("bi-play-fill");
+      masterPlay.classList.add("bi-pause-fill");
       wave.classList.add("active2");
+
       music.addEventListener("ended", () => {
-        masterPlay.classList.add("bi-play-circle-fill");
-        masterPlay.classList.remove("bi-pause-circle-fill");
+        masterPlay.classList.add("bi-play-fill");
+        masterPlay.classList.remove("bi-pause-fill");
         wave.classList.remove("active2");
       });
 
@@ -218,14 +219,14 @@ music.addEventListener("timeupdate", () => {
 
   // console.log(min1);
   if (sec < 10) {
-    sec = `0 ${sec1}`;
+    sec = `0${sec1}`;
   }
   currentEnd.innerText = `${min}:${sec}`;
 
   let min1 = Math.floor(music_curr / 60);
   let sec1 = Math.floor(music_curr % 60);
   if (sec1 < 10) {
-    sec1 = `0 ${sec1}`;
+    sec1 = `0${sec1}`;
   }
   currentStart.innerText = `${min1}:${sec1}`;
 
@@ -243,8 +244,8 @@ seek.addEventListener("change", () => {
 });
 
 music.addEventListener("ended", () => {
-  masterPlay.classList.add("bi-play-circle-fill");
-  masterPlay.classList.remove("bi-pause-circle-fill");
+  masterPlay.classList.add("bi-play-fill");
+  masterPlay.classList.remove("bi-pause-fill");
   wave.classList.remove("active2");
 });
 
@@ -255,19 +256,19 @@ let vol_bar = document.getElementsByClassName("vol_bar")[0];
 
 vol.addEventListener("change", () => {
   if (vol.value == 0) {
-    vol_icon.classList.remove("bi-volume-mute-fill");
-    vol_icon.classList.add("bi-volume-off-fill");
-    vol_icon.classList.remove("bi-volume-up-fill");
+    vol_icon.classList.add("bi-volume-mute");
+    vol_icon.classList.remove("bi-volume-down");
+    vol_icon.classList.remove("bi-volume-up");
   }
   if (vol.value > 0) {
-    vol_icon.classList.add("bi-volume-mute-fill");
-    vol_icon.classList.remove("bi-volume-off-fill");
-    vol_icon.classList.remove("bi-volume-up-fill");
+    vol_icon.classList.remove("bi-volume-mute");
+    vol_icon.classList.add("bi-volume-down");
+    vol_icon.classList.remove("bi-volume-up");
   }
   if (vol.value > 50) {
-    vol_icon.classList.remove("bi-volume-mute-fill");
-    vol_icon.classList.remove("bi-volume-off-fill");
-    vol_icon.classList.add("bi-volume-up-fill");
+    vol_icon.classList.remove("bi-volume-mute");
+    vol_icon.classList.remove("bi-volume-down");
+    vol_icon.classList.add("bi-volume-up");
   }
 
   let vol_a = vol.value;
@@ -288,8 +289,8 @@ back.addEventListener("click", () => {
   poster_master_play.src = `img/${index}.jpg`;
   music.play();
 
-  masterPlay.classList.remove("bi-play-circle-fill");
-  masterPlay.classList.add("bi-pause-circle-fill");
+  masterPlay.classList.remove("bi-play-fill");
+  masterPlay.classList.add("bi-pause-fill");
 
   let songTitles = songs.filter((el) => {
     return el.id == index;
@@ -307,8 +308,8 @@ back.addEventListener("click", () => {
   ].style.background = "rgb(105, 105, 105, .1)";
 
   makeAllplays();
-  document.getElementById("${index}").classList.remove("bi-play-circle-fill");
-  document.getElementById("${index}").classList.add("bi-pause-circle-fill");
+  document.getElementById("${index}").classList.remove("bi-play-fill");
+  document.getElementById("${index}").classList.add("bi-pause-fill");
 });
 
 next.addEventListener("click", () => {
@@ -335,8 +336,8 @@ next.addEventListener("click", () => {
 
   makeAllplays();
 
-  document.getElementById("${index}").classList.remove("bi-play-circle-fill");
-  document.getElementById("${index}").classList.add("bi-pause-circle-fill");
+  document.getElementById("${index}").classList.remove("bi-play-fill");
+  document.getElementById("${index}").classList.add("bi-pause-fill");
   makeAllBackground();
 
   Array.from(document.getElementsByClassName("songItem"))[
